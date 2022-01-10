@@ -1,0 +1,38 @@
+plugins { // https://docs.gradle.org/current/userguide/java_plugin.html
+    id 'java' // https://docs.gradle.org/current/userguide/java_plugin.html
+}
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+// for set java version ...............................................................................
+apply plugin: 'java'
+sourceCompatibility = 16
+targetCompatibility = 16
+
+// for set encoding ...............................................................................
+compileJava.options.encoding("UTF-8")
+tasks.withType(JavaCompile) {
+    options.encoding("UTF-8")
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.testng:testng:7.5'
+}
+
+// for tests
+// gradlew clean test -Psuite1
+// gradlew test -Psuite1 -Psuite2
+def suite1 = project.hasProperty("suite1")
+def suite2 = project.hasProperty("suite2")
+test {
+    useTestNG() {
+        dependsOn cleanTest
+        useDefaultListeners = true
+        if (suite1) suites "src/test/resources/All_Tests.xml"
+        if (suite2) suites "src/test/resources/calcTest.xml"
+    }
+}

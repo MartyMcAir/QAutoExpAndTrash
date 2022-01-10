@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>AssertLite</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <project.name>MultiModuleExample</project.name>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jdk.version>11</jdk.version>
+
+        <maven.compiler.source>${jdk.version}</maven.compiler.source>
+        <maven.compiler.target>${jdk.version}</maven.compiler.target>
+        <maven.compiler.release>${jdk.version}</maven.compiler.release>
+        <java.version>${jdk.version}</java.version>
+
+        <allure.version>2.13.2</allure.version>
+        <aspectj.version>1.9.5</aspectj.version>
+
+        <suiteXml>All_Tests.xml</suiteXml>
+        <!--        <suiteXml>calcTest.xml</suiteXml>-->
+        <!--        <suiteXml>duplicateTest.xml</suiteXml>-->
+        <!--        <suiteXml>othTest.xml</suiteXml>-->
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.4.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- slf4j - for webDriverManager and for allure.. -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.30</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.20.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-report-plugin</artifactId>
+            <version>3.0.0-M5</version>
+            <type>maven-plugin</type>
+        </dependency>
+    </dependencies>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>3.0.0-M5</version>
+            </plugin>
+        </plugins>
+        <outputDirectory>${basedir}/new_reports</outputDirectory>
+    </reporting>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>3.0.0-M5</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.1</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/main/resources/${suiteXml}</suiteXmlFile>
+                        <!--                        <suiteXmlFile>src/main/resources/calcTest.xml</suiteXmlFile>-->
+                        <!--                        <suiteXmlFile>src/main/resources/duplicateTest.xml</suiteXmlFile>-->
+                        <!--                        <suiteXmlFile>src/main/resources/othTest.xml</suiteXmlFile>-->
+                    </suiteXmlFiles>
+                    <!-- WORKING -->
+                    <!-- ${project.basedir} ${basedir} -->
+                    <!-- created in project folder like: C:\Users\spy\Desktop\AssertLite\allResults-->
+                    <!--                                        <reportsDirectory>${project.basedir}\allResults</reportsDirectory>-->
+
+                    <!-- created directory in folder where project folder -->
+                    <!--                    <reportsDirectory>..\allResults</reportsDirectory>-->
+                    <!--                    <reportsDirectory>../allResults</reportsDirectory>-->
+
+                    <!-- ABSOLUTE PATH -->
+                    <!--                    <reportsDirectory>C:\JKH\.jenkins\workspace\AssertLite_(TestNG_Only)_Local_AllureEmpty\results-->
+
+                    <!--  DONT LOOKING MAY BE DONT WORK -->
+                    <!--                    <reportsDirectory>\..\allResults</reportsDirectory>-->
+                    <!--                    <reportsDirectory>/../allResults</reportsDirectory>-->
+                    <!--                    <reportsDirectory>../../allResults</reportsDirectory>-->
+
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                    <reportsDirectory>C:\JKH\.jenkins\workspace\Local_Assert_Only\target</reportsDirectory>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.10.0</version>
+                <configuration>
+                    <reportVersion>${allure.version}</reportVersion>
+                    <allureDownloadUrl>
+                        https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/${allure.version}/allure-commandline-${allure.version}.zip
+                    </allureDownloadUrl>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

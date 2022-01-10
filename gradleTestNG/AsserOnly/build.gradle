@@ -1,0 +1,57 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.8.1'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+def allureVersion = "2.8.1"
+
+allure {
+    version = allureVersion
+    useTestNG {
+        version = allureVersion
+    }
+//    downloadLink = "http://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/$allureVersion/allure-commandline-$allureVersion.zip"
+}
+
+dependencies {
+//    implementation("org.testng:testng:6.14.3")
+    testImplementation group: 'org.testng', name: 'testng', version: '7.4.0'
+    testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.32'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.22.0'
+
+    implementation group: 'io.qameta.allure', name: 'allure-testng', version: '2.17.2'
+    implementation('io.qameta.allure:allure-okhttp3:2.14.0')
+    testImplementation('io.qameta.allure:allure-selenide:2.14.0')
+
+//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+// IN CMD
+//        gradlew test -Psuite2
+//        gradlew test -Psuite1 -Psuite2
+def suite2 = project.hasProperty("suite2")
+
+test {
+//    useJUnitPlatform()
+    useTestNG() {
+        dependsOn cleanTest
+        useDefaultListeners = true
+//        suites "src/test/resources/tests1.xml"
+//        suites "src/test/resources/tests2.xml"
+
+        if (project.hasProperty("all")) suites "src/test/resources/All_Tests.xml"
+        if (project.hasProperty("suite1")) suites "src/test/resources/calcTest.xml"
+        if (suite2) suites "src/test/resources/duplicateTest.xml"
+        if (project.hasProperty('suite3')) suites './src/test/othTest.xml'
+
+    }
+
+}

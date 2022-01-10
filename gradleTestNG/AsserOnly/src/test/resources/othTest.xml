@@ -1,0 +1,29 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite2" parallel="tests" thread-count="2">
+    <!--    <test name="Regression2">-->
+    <!--        <classes>-->
+    <!--            <class name="com.NumberUtilsTest"/>-->
+    <!--            <class name="com.StringUtilsTest"/>-->
+    <!--        </classes>-->
+    <!--    </test>-->
+
+    <!--    // packages Example-->
+    <!--    <test name="some test 1">-->
+    <!--        <packages>-->
+    <!--            <package name="package1"/>-->
+    <!--        </packages>-->
+    <!--    </test>-->
+
+    <!--    // classes Example-->
+    <!--    <test name="some test 2">-->
+    <!--        <classes>-->
+    <!--            <class name="com.CalcTest">-->
+    <!--                <methods>-->
+    <!--                    <include name="sumTest"/>-->
+    <!--                </methods>-->
+    <!--            </class>-->
+    <!--        </classes>-->
+    <!--    </test>-->
+
+</suite>
