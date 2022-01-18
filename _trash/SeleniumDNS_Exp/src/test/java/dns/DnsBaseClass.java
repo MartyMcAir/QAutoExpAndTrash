@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 
@@ -14,9 +15,9 @@ abstract class DnsBaseClass {
     WebDriver webDriver = DriverManagerWebDriver.getWebDriver();
     WebDriverWait webDriverWait = DriverManagerWebDriver.getWebDriverWait();
     Actions actions = DriverManagerWebDriver.getActions();
-
     // using JS, can't get WebElement or text from _ what find..
     JavascriptExecutor javaScriptExecutor = DriverManagerWebDriver.getJavaScriptExecutor();
+    static FluentWait<WebDriver> fluentWait = DriverManagerWebDriver.getFluentWait();
 
     @BeforeClass
     void setUp() {
@@ -117,6 +118,8 @@ abstract class DnsBaseClass {
         // getElementsByTagName // getElementsByName
         String jsCode = String.format("document.querySelector(\"%1$s\").click()", css);
         javaScriptExecutor.executeScript(jsCode);
+        javaScriptExecutor.executeScript("document.querySelector(\"#idName\").click()");
+        javaScriptExecutor.executeAsyncScript("asynchronous script here");
     }
 
     void findElementByWhat_andClick(String byWhat, String value) {

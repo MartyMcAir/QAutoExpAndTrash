@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -65,16 +66,19 @@ public class DNS_openPage {
         By cityPath = By.cssSelector("div[class='dropdown-city']>a[class~='btn-additional']");
         By widgetPath = By.cssSelector("div[class~=\"info-widget\"]>span[class~=\"info-widget__close\"]");
         By pcLinkPath = By.xpath("//div[@class='menu-desktop']//div[@class='menu-desktop__root']//a[text()='Компьютеры']");
-        WebElement cityElement = webDriverWait.until(ExpectedConditions.presenceOfElementLocated(cityPath));
+        WebElement webElement = webDriverWait.until(ExpectedConditions.presenceOfElementLocated(cityPath));
         WebElement widgetElement = webDriverWait.until(ExpectedConditions.presenceOfElementLocated(widgetPath));
         WebElement pcElement = webDriverWait.until(ExpectedConditions.presenceOfElementLocated(pcLinkPath));
 
-//        cityElement.click();
+//        webElement.click();
 //        widgetElement.click();
 //        actions.moveToElement(pcElement).perform();
 
-//        actions.click(cityElement).click(widgetElement).moveToElement(pcElement).perform();
-        actions.click(cityElement).pause(500).click(widgetElement).pause(500).moveToElement(pcElement).pause(500).perform();
+//        Action build = actions.moveToElement(webElement).pause(10).click().contextClick(webElement)
+//                .clickAndHold().doubleClick().release().dragAndDrop(webElement, pcElement).build();
+//        build.perform();
+//        actions.click(webElement).click(widgetElement).moveToElement(pcElement).perform();
+        actions.click(webElement).pause(500).click(widgetElement).pause(500).moveToElement(pcElement).pause(500).perform();
 
         By monitorLinkPath = By.xpath("//div[contains(@class, 'menu-desktop__submenu')]//div[@class='menu-desktop__second-level-wrap']//a[text()='Мониторы']");
         WebElement monitorElement = webDriverWait.until(ExpectedConditions.presenceOfElementLocated(monitorLinkPath));

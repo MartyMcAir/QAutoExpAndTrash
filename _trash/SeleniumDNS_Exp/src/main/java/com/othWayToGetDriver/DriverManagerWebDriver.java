@@ -2,10 +2,12 @@ package com.othWayToGetDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
@@ -15,26 +17,35 @@ public class DriverManagerWebDriver {
     private static WebDriverWait webDriverWait;
     private static Actions actions;
     private static JavascriptExecutor javaScriptExecutor;
+    private static FluentWait<WebDriver> fluentWait;
 
     private DriverManagerWebDriver() {
     }
 
+    public static FluentWait<WebDriver> getFluentWait() {
+        if (fluentWait == null) {
+            fluentWait = new FluentWait<>(getWebDriver());
+        }
+        return fluentWait;
+    }
+
     public static WebDriver getWebDriver() {
         if (webDriver == null) {
-//            System.setProperty("webdriver.chrome.driver", "C:/chromedriver.exe");
             WebDriverManager.chromedriver().setup();
 
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--disable-notifications");
-            options.addArguments("--incognito");
-//            options.addArguments("--start-maximized");
+            System.setProperty("webdriver.chrome.driver", "C:/chromedriver.exe");
+            ChromeOptions opt = new ChromeOptions();
+            opt.addArguments("--disable-notifications");
+            opt.addArguments("--incognito");
+            opt.addArguments("--start-maximized");
+            opt.addArguments("--headless", "--window-size=1920,1080");
+            opt.setProxy(new Proxy());
+            WebDriver webDriver = new ChromeDriver(opt);
             // FOR HeadLess Mode
-//            options.addArguments("--headless", "--window-size=1920,1080");
             // FOR Proxy
 //            Proxy proxy = new Proxy();
 //            proxy.setHttpProxy("myhttpproxy:3337");
-//            options.setProxy(proxy);
-            webDriver = new ChromeDriver(options);
+//            opt.setProxy(proxy);
         }
         return webDriver;
     }
