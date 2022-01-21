@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>
+        <property name="connection.driver_class">org.postgresql.Driver</property> <!-- DB Driver -->
+        <property name="connection.username">postgres</property> <!-- DB User -->
+        <property name="connection.password">anduser</property> <!-- DB Password -->
+
+        <property name="dialect">org.hibernate.dialect.PostgreSQL10Dialect</property> <!-- DB Dialect -->
+        <property name="hbm2ddl.auto">update</property> <!-- create / create-drop / update -->
+
+        <!-- JDBC connection pool (use the built-in) -->
+        <!-- HibernateException: The internal connection pool has reached its maximum size and no connection is currently available! -->
+        <property name="hibernate.connection.pool_size">1</property>
+
+        <!--        <property name="show_sql">true</property> &lt;!&ndash; Show SQL in console &ndash;&gt;-->
+        <!--                <property name="format_sql">true</property> &lt;!&ndash; Show SQL formatted &ndash;&gt;-->
+
+        <!-- Enable Hibernate automatic session context management -->
+        <property name="hibernate.current_session_context_class">
+            org.hibernate.context.internal.ThreadLocalSessionContext
+        </property>
+
+        <!-- ....................................................................................................... -->
+        <!-- here all entities will come -->
+        <mapping class="com.model.Person"/>
+
+        <!-- ....................................................................................................... -->
+
+    </session-factory>
+</hibernate-configuration>
