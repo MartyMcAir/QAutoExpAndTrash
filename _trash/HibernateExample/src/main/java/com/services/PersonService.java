@@ -32,8 +32,8 @@ public class PersonService {
             System.out.println(current);
     }
 
-    public int add(Person developer) {
-        return (int) (Integer) session.save(developer);
+    public int add(Person person) {
+        return (int) (Integer) session.save(person);
     }
 
     public void updateName(int id, String name) {

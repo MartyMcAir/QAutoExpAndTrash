@@ -38,9 +38,9 @@ public abstract class DrvManager {
 
 //            System.setProperty("webdriver.chrome.driver", "C:/chromedriver.exe");
             webDriver = new ChromeDriver(options);
-            System.out.println("___________ getWebDriver INNER: ");
+//            System.out.println("___________ getWebDriver INNER: ");
         }
-        System.out.println("getWebDriver #: " + atom.getAndIncrement());
+//        System.out.println("getWebDriver #: " + atom.getAndIncrement());
         return webDriver;
     }
 
@@ -50,7 +50,7 @@ public abstract class DrvManager {
     }
 
     public static WebDriverWait getWebDriverWait() {
-        System.out.println("getWebDriverWait");
+        System.out.println("getWebDriverWait - it invoke always _ even if method dnt used");
         return webDriverWait == null ? webDriverWait = new WebDriverWait(getWebDriver(), 10) : webDriverWait;
     }
 
@@ -74,12 +74,12 @@ public abstract class DrvManager {
     }
 
     public static JavascriptExecutor getJavascriptExecutor() {
-        System.out.println("getJavascriptExecutor");
+//        System.out.println("getJavascriptExecutor");
         return javascriptExecutor == null ? javascriptExecutor = (JavascriptExecutor) getWebDriver() : javascriptExecutor;
     }
 
     public static Actions getActions() {
-        System.out.println("getActions");
+//        System.out.println("getActions");
         return actions == null ? actions = new Actions(getWebDriver()) : actions;
     }
 

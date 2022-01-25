@@ -1,5 +1,6 @@
 package dns;
 
+import com.google.gson.JsonObject;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -21,7 +22,6 @@ public class FluentWaitExample extends DnsBaseClass {
         //This is what we will explore more in this chapter
         Alert alert = fluentWait.until(ExpectedConditions.alertIsPresent());
         WebElement webElement = fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("")));
-
         //.............................................................................
         Function<WebDriver, WebElement> function = new Function<>() {
             @Override

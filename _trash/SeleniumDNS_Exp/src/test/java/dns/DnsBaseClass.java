@@ -16,7 +16,7 @@ abstract class DnsBaseClass {
     WebDriverWait webDriverWait = DriverManagerWebDriver.getWebDriverWait();
     Actions actions = DriverManagerWebDriver.getActions();
     // using JS, can't get WebElement or text from _ what find..
-    JavascriptExecutor javaScriptExecutor = DriverManagerWebDriver.getJavaScriptExecutor();
+    JavascriptExecutor javaScriptExecutor = DriverManagerWebDriver.getJavascriptExecutor();
     static FluentWait<WebDriver> fluentWait = DriverManagerWebDriver.getFluentWait();
 
     @BeforeClass

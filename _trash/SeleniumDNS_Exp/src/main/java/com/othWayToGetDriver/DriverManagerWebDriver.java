@@ -2,7 +2,6 @@ package com.othWayToGetDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -15,11 +14,22 @@ import java.util.concurrent.TimeUnit;
 public class DriverManagerWebDriver {
     private static WebDriver webDriver;
     private static WebDriverWait webDriverWait;
+    private WebDriverWait webDriverWaitNotStatic;
     private static Actions actions;
     private static JavascriptExecutor javaScriptExecutor;
     private static FluentWait<WebDriver> fluentWait;
 
     private DriverManagerWebDriver() {
+    }
+
+    public DriverManagerWebDriver(String someText) {
+        System.out.println(someText);
+        webDriverWaitNotStatic = new WebDriverWait(getWebDriver(), 10);
+    }
+
+    public WebDriverWait getWebDriverWaitNotStatic() {
+        System.out.println("it invoke only if used because it not static");
+        return webDriverWaitNotStatic;
     }
 
     public static FluentWait<WebDriver> getFluentWait() {
@@ -33,14 +43,14 @@ public class DriverManagerWebDriver {
         if (webDriver == null) {
             WebDriverManager.chromedriver().setup();
 
-            System.setProperty("webdriver.chrome.driver", "C:/chromedriver.exe");
+//            System.setProperty("webdriver.chrome.driver", "C:/chromedriver.exe");
             ChromeOptions opt = new ChromeOptions();
             opt.addArguments("--disable-notifications");
             opt.addArguments("--incognito");
-            opt.addArguments("--start-maximized");
-            opt.addArguments("--headless", "--window-size=1920,1080");
-            opt.setProxy(new Proxy());
-            WebDriver webDriver = new ChromeDriver(opt);
+//            opt.addArguments("--start-maximized");
+//            opt.addArguments("--headless", "--window-size=1920,1080");
+//            opt.setProxy(new Proxy());
+            webDriver = new ChromeDriver(opt);
             // FOR HeadLess Mode
             // FOR Proxy
 //            Proxy proxy = new Proxy();
@@ -50,9 +60,11 @@ public class DriverManagerWebDriver {
         return webDriver;
     }
 
+
     public static WebDriverWait getWebDriverWait() {
         if (webDriverWait == null) {
-            // WebDriverWait наследуется от FluentWait (Fluent - реализует until() method..)
+//             WebDriverWait наследуется от FluentWait (Fluent - реализует until() method..)
+            System.out.println("getWebDriverWait - it invoke always _ even if method dnt used");
             webDriverWait = new WebDriverWait(getWebDriver(), 10);
         }
         return webDriverWait;
@@ -69,7 +81,7 @@ public class DriverManagerWebDriver {
         return actions;
     }
 
-    public static JavascriptExecutor getJavaScriptExecutor() {
+    public static JavascriptExecutor getJavascriptExecutor() {
         if (javaScriptExecutor == null) {
             // Обычный new ChromeDriver драйвер, наследуется от RemoteWebDriver
             // - и он реализует интерфейс JavascriptExecutor
