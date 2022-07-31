@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<!-- multi suite: https://automated-testing.info/t/kak-zapustit-odin-konkretnyj-testovyj-nabor-testng-xml-s-pomoshhyu-mave/17855 -->
+<!-- multi profile: https://www.youtube.com/watch?v=xQCpTHLGaQI-->
+
+<suite name="ParentSuite" thread-count="2" parallel="tests">
+    <suite-files>
+        <suite-file path="calcTest.xml"/>
+    </suite-files>
+</suite>
