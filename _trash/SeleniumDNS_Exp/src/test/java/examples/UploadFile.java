@@ -24,6 +24,7 @@ public class UploadFile {
         webDriver.navigate().to("https://www.google.ru/imghp?hl=ru");
         WebElement picBtn = webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("*[jscontroller='vCzgHd']")));
         picBtn.click();
+//        picBtn.sendKeys(Keys.CONTROL, "c");
 
         WebElement upLoadBtn = webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[text()='Загрузить изображение']")));
         upLoadBtn.click();

@@ -4,7 +4,7 @@
 <!-- multi suite: https://automated-testing.info/t/kak-zapustit-odin-konkretnyj-testovyj-nabor-testng-xml-s-pomoshhyu-mave/17855 -->
 <!-- multi profile: https://www.youtube.com/watch?v=xQCpTHLGaQI-->
 
-<suite name="ParentSuite" thread-count="2" parallel="tests">
+<suite name="ParentSuite" thread-count="2" parallel="methods">
     <suite-files>
         <suite-file path="calcTest.xml"/>
         <suite-file path="duplicateTest.xml"/>

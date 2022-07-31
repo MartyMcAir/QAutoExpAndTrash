@@ -47,7 +47,10 @@ public class DriverManagerWebDriver {
             ChromeOptions opt = new ChromeOptions();
             opt.addArguments("--disable-notifications");
             opt.addArguments("--incognito");
+
+//            opt.addArguments("--start-fullscreen");
 //            opt.addArguments("--start-maximized");
+
 //            opt.addArguments("--headless", "--window-size=1920,1080");
 //            opt.setProxy(new Proxy());
             webDriver = new ChromeDriver(opt);

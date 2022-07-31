@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="ParentSuite">
+    <test name="Group Test">
+        <groups>
+            <run>
+                <include name="group1"/>
+                <include name="group2"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.GroupTest"/>
+        </classes>
+    </test>
+
+    <!--    <packages>-->
+    <!--        <package name="com"/>-->
+    <!--    </packages>-->
+</suite>

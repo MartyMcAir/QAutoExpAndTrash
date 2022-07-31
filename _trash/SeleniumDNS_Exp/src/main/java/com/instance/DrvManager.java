@@ -1,6 +1,6 @@
 package com.instance;
 
-import com.utils.StatCounter;
+//import com.utils.StatCounter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Platform;
@@ -24,7 +24,7 @@ public abstract class DrvManager {
     private static RemoteWebDriver remoteWebDriver;
     private static JavascriptExecutor javascriptExecutor;
     private static Actions actions;
-    private static StatCounter statCounter;
+//    private static StatCounter statCounter;
 
     public static WebDriver getWebDriver() {
         if (webDriver == null) {
@@ -83,11 +83,11 @@ public abstract class DrvManager {
         return actions == null ? actions = new Actions(getWebDriver()) : actions;
     }
 
-    public static StatCounter getStatCounter() {
-        return statCounter == null ? statCounter = new StatCounter() : statCounter;
-    }
-
-    public static StatCounter getAlwaysNewInstance_statCounter() {
-        return new StatCounter();
-    }
+//    public static StatCounter getStatCounter() {
+//        return statCounter == null ? statCounter = new StatCounter() : statCounter;
+//    }
+//
+//    public static StatCounter getAlwaysNewInstance_statCounter() {
+//        return new StatCounter();
+//    }
 }

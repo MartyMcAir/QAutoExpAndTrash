@@ -16,16 +16,16 @@ public enum EnumSingleTonDriver {
     }
 
     private static void createDriver(EnumBrowsers browserName) {
-        switch (browserName) {
-            case CHROME -> {
-                WebDriverManager.chromedriver().setup();
-                webDriver = new ChromeDriver(InitOptions.defChromeOpt(false));
-            }
-            case FIREFOX -> {
-                WebDriverManager.firefoxdriver().setup();
-                webDriver = new FirefoxDriver(InitOptions.defFirefoxOptions());
-            }
-            default -> throw new NullPointerException("WebDriver not instantiated");
-        }
+//        switch (browserName) {
+//            case CHROME -> {
+//                WebDriverManager.chromedriver().setup();
+//                webDriver = new ChromeDriver(InitOptions.defChromeOpt(false));
+//            }
+//            case FIREFOX -> {
+//                WebDriverManager.firefoxdriver().setup();
+//                webDriver = new FirefoxDriver(InitOptions.defFirefoxOptions());
+//            }
+//            default -> throw new NullPointerException("WebDriver not instantiated");
+//        }
     }
 }
